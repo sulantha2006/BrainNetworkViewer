@@ -13,48 +13,48 @@ class BrainNetworkViewer(wx.Frame):
 
 
     def LayoutUI(self):
-        tabs = wx.Notebook(self)
-        panel = wx.Panel(tabs)
-        tabs.AddPage(panel, "View")
-        statusBar = self.CreateStatusBar(1, 0)
-        statusBar.SetStatusWidths([-1])
-        statusBar.SetStatusText('Brain Network Viewer. ')
+        self.tabs = wx.Notebook(self)
+        self.panel = wx.Panel(self.tabs)
+        self.tabs.AddPage(self.panel, "View")
+        self.statusBar = self.CreateStatusBar(1, 0)
+        self.statusBar.SetStatusWidths([-1])
+        self.statusBar.SetStatusText('Brain Network Viewer. ')
         mainSizer = wx.GridBagSizer(6, 7)
 
         ### Set Status Section
-        statusStaticBox = wx.StaticBox(panel, label='Status')
+        statusStaticBox = wx.StaticBox(self.panel, label='Status')
         mainSizer.Add(statusStaticBox, pos=(0, 4), span=(4, 3), flag=wx.TOP | wx.EXPAND | wx.RIGHT | wx.BOTTOM,
                       border=5)
 
         ###Set Template File Section
-        templateBoxsizer = wx.StaticBoxSizer(wx.StaticBox(panel, -1, label='Template Files'), wx.VERTICAL)
+        templateBoxsizer = wx.StaticBoxSizer(wx.StaticBox(self.panel, -1, label='Template Files'), wx.VERTICAL)
 
         templateInternalBagSizer = wx.GridBagSizer(3, 6)
         templateBoxsizer.Add(templateInternalBagSizer, flag=wx.ALIGN_CENTER | wx.EXPAND)
 
-        tlCheck = wx.CheckBox(panel, label="Left")
-        templateInternalBagSizer.Add(tlCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.tlCheck = wx.CheckBox(self.panel, label="Left")
+        templateInternalBagSizer.Add(self.tlCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                      pos=(0, 0), span=(1, 2), border=5)
-        tlText = wx.TextCtrl(panel)
-        templateInternalBagSizer.Add(tlText, pos=(0, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        tlButton = wx.Button(panel, label="Browse")
-        templateInternalBagSizer.Add(tlButton, pos=(0, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.tlText = wx.TextCtrl(self.panel)
+        templateInternalBagSizer.Add(self.tlText, pos=(0, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.tlButton = wx.Button(self.panel, label="Browse")
+        templateInternalBagSizer.Add(self.tlButton, pos=(0, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
-        trCheck = wx.CheckBox(panel, label="Right")
-        templateInternalBagSizer.Add(trCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.trCheck = wx.CheckBox(self.panel, label="Right")
+        templateInternalBagSizer.Add(self.trCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                      pos=(1, 0), span=(1, 2), border=5)
-        trText = wx.TextCtrl(panel)
-        templateInternalBagSizer.Add(trText, pos=(1, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        trButton = wx.Button(panel, label="Browse")
-        templateInternalBagSizer.Add(trButton, pos=(1, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.trText = wx.TextCtrl(self.panel)
+        templateInternalBagSizer.Add(self.trText, pos=(1, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.trButton = wx.Button(self.panel, label="Browse")
+        templateInternalBagSizer.Add(self.trButton, pos=(1, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
-        tfCheck = wx.CheckBox(panel, label="Full")
-        templateInternalBagSizer.Add(tfCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.tfCheck = wx.CheckBox(self.panel, label="Full")
+        templateInternalBagSizer.Add(self.tfCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                      pos=(2, 0), span=(1, 2), border=5)
-        tfText = wx.TextCtrl(panel)
-        templateInternalBagSizer.Add(tfText, pos=(2, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        tfButton = wx.Button(panel, label="Browse")
-        templateInternalBagSizer.Add(tfButton, pos=(2, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.tfText = wx.TextCtrl(self.panel)
+        templateInternalBagSizer.Add(self.tfText, pos=(2, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.tfButton = wx.Button(self.panel, label="Browse")
+        templateInternalBagSizer.Add(self.tfButton, pos=(2, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
         templateInternalBagSizer.AddGrowableCol(3)
 
@@ -62,34 +62,34 @@ class BrainNetworkViewer(wx.Frame):
         ##End Template Section
 
         ###Set Surface File Section
-        surfaceBoxsizer = wx.StaticBoxSizer(wx.StaticBox(panel, -1, label='Surface Files'), wx.VERTICAL)
+        surfaceBoxsizer = wx.StaticBoxSizer(wx.StaticBox(self.panel, -1, label='Surface Files'), wx.VERTICAL)
 
         surfaceInternalBagSizer = wx.GridBagSizer(3, 6)
         surfaceBoxsizer.Add(surfaceInternalBagSizer, flag=wx.ALIGN_CENTER | wx.EXPAND)
 
-        slCheck = wx.CheckBox(panel, label="Left")
-        surfaceInternalBagSizer.Add(slCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.slCheck = wx.CheckBox(self.panel, label="Left")
+        surfaceInternalBagSizer.Add(self.slCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                     pos=(0, 0), span=(1, 2), border=5)
-        slText = wx.TextCtrl(panel)
-        surfaceInternalBagSizer.Add(slText, pos=(0, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        slButton = wx.Button(panel, label="Browse")
-        surfaceInternalBagSizer.Add(slButton, pos=(0, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.slText = wx.TextCtrl(self.panel)
+        surfaceInternalBagSizer.Add(self.slText, pos=(0, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.slButton = wx.Button(self.panel, label="Browse")
+        surfaceInternalBagSizer.Add(self.slButton, pos=(0, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
-        srCheck = wx.CheckBox(panel, label="Right")
-        surfaceInternalBagSizer.Add(srCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.srCheck = wx.CheckBox(self.panel, label="Right")
+        surfaceInternalBagSizer.Add(self.srCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                     pos=(1, 0), span=(1, 2), border=5)
-        srText = wx.TextCtrl(panel)
-        surfaceInternalBagSizer.Add(srText, pos=(1, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        srButton = wx.Button(panel, label="Browse")
-        surfaceInternalBagSizer.Add(srButton, pos=(1, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.srText = wx.TextCtrl(self.panel)
+        surfaceInternalBagSizer.Add(self.srText, pos=(1, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.srButton = wx.Button(self.panel, label="Browse")
+        surfaceInternalBagSizer.Add(self.srButton, pos=(1, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
-        sfCheck = wx.CheckBox(panel, label="Full")
-        surfaceInternalBagSizer.Add(sfCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.sfCheck = wx.CheckBox(self.panel, label="Full")
+        surfaceInternalBagSizer.Add(self.sfCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                     pos=(2, 0), span=(1, 2), border=5)
-        sfText = wx.TextCtrl(panel)
-        surfaceInternalBagSizer.Add(sfText, pos=(2, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        sfButton = wx.Button(panel, label="Browse")
-        surfaceInternalBagSizer.Add(sfButton, pos=(2, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.sfText = wx.TextCtrl(self.panel)
+        surfaceInternalBagSizer.Add(self.sfText, pos=(2, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.sfButton = wx.Button(self.panel, label="Browse")
+        surfaceInternalBagSizer.Add(self.sfButton, pos=(2, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
         surfaceInternalBagSizer.AddGrowableCol(3)
 
@@ -98,26 +98,26 @@ class BrainNetworkViewer(wx.Frame):
 
 
         ###Set Network File Section
-        networkBoxsizer = wx.StaticBoxSizer(wx.StaticBox(panel, -1, label='Network Files'), wx.VERTICAL)
+        networkBoxsizer = wx.StaticBoxSizer(wx.StaticBox(self.panel, -1, label='Network Files'), wx.VERTICAL)
 
         networkInternalBagSizer = wx.GridBagSizer(2, 6)
         networkBoxsizer.Add(networkInternalBagSizer, flag=wx.ALIGN_CENTER | wx.EXPAND)
 
-        nodesCheck = wx.CheckBox(panel, label="Nodes")
-        networkInternalBagSizer.Add(nodesCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.nodesCheck = wx.CheckBox(self.panel, label="Nodes")
+        networkInternalBagSizer.Add(self.nodesCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                     pos=(0, 0), span=(1, 2), border=5)
-        nodesText = wx.TextCtrl(panel)
-        networkInternalBagSizer.Add(nodesText, pos=(0, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        nodesButton = wx.Button(panel, label="Browse")
-        networkInternalBagSizer.Add(nodesButton, pos=(0, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.nodesText = wx.TextCtrl(self.panel)
+        networkInternalBagSizer.Add(self.nodesText, pos=(0, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.nodesButton = wx.Button(self.panel, label="Browse")
+        networkInternalBagSizer.Add(self.nodesButton, pos=(0, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
-        edgesCheck = wx.CheckBox(panel, label="Edges")
-        networkInternalBagSizer.Add(edgesCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
+        self.edgesCheck = wx.CheckBox(self.panel, label="Edges")
+        networkInternalBagSizer.Add(self.edgesCheck, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL,
                                     pos=(1, 0), span=(1, 2), border=5)
-        edgesText = wx.TextCtrl(panel)
-        networkInternalBagSizer.Add(edgesText, pos=(1, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
-        edgesButton = wx.Button(panel, label="Browse")
-        networkInternalBagSizer.Add(edgesButton, pos=(1, 5), flag=wx.TOP | wx.RIGHT, border=5)
+        self.edgesText = wx.TextCtrl(self.panel)
+        networkInternalBagSizer.Add(self.edgesText, pos=(1, 2), span=(1, 3), flag=wx.TOP | wx.EXPAND, border=5)
+        self.edgesButton = wx.Button(self.panel, label="Browse")
+        networkInternalBagSizer.Add(self.edgesButton, pos=(1, 5), flag=wx.TOP | wx.RIGHT, border=5)
 
         networkInternalBagSizer.AddGrowableCol(3)
 
@@ -125,33 +125,33 @@ class BrainNetworkViewer(wx.Frame):
         ##End Network Section
 
         ##Set Main Buttons
-        verifyButton = wx.Button(panel, label='Verify')
-        mainSizer.Add(verifyButton, pos=(4, 4), span=(1, 1), flag=wx.EXPAND, border=5)
+        self.verifyButton = wx.Button(self.panel, label='Verify')
+        mainSizer.Add(self.verifyButton, pos=(4, 4), span=(1, 1), flag=wx.EXPAND, border=5)
 
-        viewButton = wx.Button(panel, label='View')
-        mainSizer.Add(viewButton, pos=(4, 5), span=(1, 1), flag=wx.EXPAND, border=5)
+        self.viewButton = wx.Button(self.panel, label='View')
+        mainSizer.Add(self.viewButton, pos=(4, 5), span=(1, 1), flag=wx.EXPAND, border=5)
 
-        quitButton = wx.Button(panel, label='Quit')
-        mainSizer.Add(quitButton, pos=(4, 6), span=(1, 1), flag=wx.RIGHT | wx.EXPAND, border=5)
+        self.quitButton = wx.Button(self.panel, label='Quit')
+        mainSizer.Add(self.quitButton, pos=(4, 6), span=(1, 1), flag=wx.RIGHT | wx.EXPAND, border=5)
 
         ###### Initial Disabling Controls
-        tlText.Enable(False)
-        trText.Enable(False)
-        tfText.Enable(False)
-        slText.Enable(False)
-        srText.Enable(False)
-        sfText.Enable(False)
-        nodesText.Enable(False)
-        edgesText.Enable(False)
+        self.tlText.Enable(False)
+        self.trText.Enable(False)
+        self.tfText.Enable(False)
+        self.slText.Enable(False)
+        self.srText.Enable(False)
+        self.sfText.Enable(False)
+        self.nodesText.Enable(False)
+        self.edgesText.Enable(False)
 
-        tlButton.Enable(False)
-        trButton.Enable(False)
-        tfButton.Enable(False)
-        slButton.Enable(False)
-        srButton.Enable(False)
-        sfButton.Enable(False)
-        nodesButton.Enable(False)
-        edgesButton.Enable(False)
+        self.tlButton.Enable(False)
+        self.trButton.Enable(False)
+        self.tfButton.Enable(False)
+        self.slButton.Enable(False)
+        self.srButton.Enable(False)
+        self.sfButton.Enable(False)
+        self.nodesButton.Enable(False)
+        self.edgesButton.Enable(False)
 
         #####
         mainSizer.AddGrowableCol(1)
@@ -160,43 +160,43 @@ class BrainNetworkViewer(wx.Frame):
         mainSizer.AddGrowableCol(4)
         mainSizer.AddGrowableCol(5)
         mainSizer.AddGrowableCol(6)
-        panel.SetSizer(mainSizer)
+        self.panel.SetSizer(mainSizer)
 
         ####Bindings
         self.Bind(wx.EVT_CLOSE, self.closeFrame)
-        self.Bind(wx.EVT_BUTTON, self.closeButton, quitButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, tlText), tlButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, trText), trButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, tfText), tfButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, slText), slButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, srText), srButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, sfText), sfButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, nodesText), nodesButton)
-        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, edgesText), edgesButton)
+        self.Bind(wx.EVT_BUTTON, self.closeButton, self.quitButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.tlText), self.tlButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.trText), self.trButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.tfText), self.tfButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.slText), self.slButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.srText), self.srButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.sfText), self.sfButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.nodesText), self.nodesButton)
+        self.Bind(wx.EVT_BUTTON, lambda event: self.onBrowse(event, self.edgesText), self.edgesButton)
         self.Bind(wx.EVT_CHECKBOX,
-                  lambda event: self.onCheckBox(event, tlCheck, tlText, tlButton, disableCheckBoxList=[tfCheck],
-                                                enableVerifyCheckBoxList=[trCheck]), tlCheck)
+                  lambda event: self.onCheckBox(event, self.tlCheck, self.tlText, self.tlButton, disableCheckBoxList=[self.tfCheck],
+                                                enableVerifyCheckBoxList=[self.trCheck]), self.tlCheck)
         self.Bind(wx.EVT_CHECKBOX,
-                  lambda event: self.onCheckBox(event, trCheck, trText, trButton, disableCheckBoxList=[tfCheck],
-                                                enableVerifyCheckBoxList=[tlCheck]), trCheck)
-        self.Bind(wx.EVT_CHECKBOX, lambda event: self.onCheckBox(event, tfCheck, tfText, tfButton,
-                                                                 disableCheckBoxList=[tlCheck, trCheck],
-                                                                 enableVerifyCheckBoxList=[tlCheck, trCheck]), tfCheck)
+                  lambda event: self.onCheckBox(event, self.trCheck, self.trText, self.trButton, disableCheckBoxList=[self.tfCheck],
+                                                enableVerifyCheckBoxList=[self.tlCheck]), self.trCheck)
+        self.Bind(wx.EVT_CHECKBOX, lambda event: self.onCheckBox(event, self.tfCheck, self.tfText, self.tfButton,
+                                                                 disableCheckBoxList=[self.tlCheck, self.trCheck],
+                                                                 enableVerifyCheckBoxList=[self.tlCheck, self.trCheck]), self.tfCheck)
         self.Bind(wx.EVT_CHECKBOX,
-                  lambda event: self.onCheckBox(event, slCheck, slText, slButton, disableCheckBoxList=[sfCheck],
-                                                enableVerifyCheckBoxList=[srCheck]), slCheck)
+                  lambda event: self.onCheckBox(event, self.slCheck, self.slText, self.slButton, disableCheckBoxList=[self.sfCheck],
+                                                enableVerifyCheckBoxList=[self.srCheck]), self.slCheck)
         self.Bind(wx.EVT_CHECKBOX,
-                  lambda event: self.onCheckBox(event, srCheck, srText, srButton, disableCheckBoxList=[sfCheck],
-                                                enableVerifyCheckBoxList=[slCheck]), srCheck)
-        self.Bind(wx.EVT_CHECKBOX, lambda event: self.onCheckBox(event, sfCheck, sfText, sfButton,
-                                                                 disableCheckBoxList=[slCheck, srCheck],
-                                                                 enableVerifyCheckBoxList=[slCheck, srCheck]), sfCheck)
+                  lambda event: self.onCheckBox(event, self.srCheck, self.srText, self.srButton, disableCheckBoxList=[self.sfCheck],
+                                                enableVerifyCheckBoxList=[self.slCheck]), self.srCheck)
+        self.Bind(wx.EVT_CHECKBOX, lambda event: self.onCheckBox(event, self.sfCheck, self.sfText, self.sfButton,
+                                                                 disableCheckBoxList=[self.slCheck, self.srCheck],
+                                                                 enableVerifyCheckBoxList=[self.slCheck, self.srCheck]), self.sfCheck)
         self.Bind(wx.EVT_CHECKBOX,
-                  lambda event: self.onCheckBox(event, nodesCheck, nodesText, nodesButton, disableCheckBoxList=[],
-                                                enableVerifyCheckBoxList=[]), nodesCheck)
+                  lambda event: self.onCheckBox(event, self.nodesCheck, self.nodesText, self.nodesButton, disableCheckBoxList=[],
+                                                enableVerifyCheckBoxList=[]), self.nodesCheck)
         self.Bind(wx.EVT_CHECKBOX,
-                  lambda event: self.onCheckBox(event, edgesCheck, edgesText, edgesButton, disableCheckBoxList=[],
-                                                enableVerifyCheckBoxList=[]), edgesCheck)
+                  lambda event: self.onCheckBox(event, self.edgesCheck, self.edgesText, self.edgesButton, disableCheckBoxList=[],
+                                                enableVerifyCheckBoxList=[]), self.edgesCheck)
 
         ####End Bindings
 
